@@ -1,0 +1,21 @@
+20
+1 m d c 2 0
+2 m h c 2 0
+3 m s c 2 0
+4 m x s 0 0
+5 m d t 0 0
+6 m d t 1 0
+7 m d t 2 0
+8 m h t 0 0
+9 m h t 1 0
+10 m s t 0 0
+11 s d c 2 0
+12 s h c 2 0
+13 s s c 2 0
+14 s x s 0 0
+15 s d t 0 0
+16 s d t 1 0
+17 s d t 2 0
+18 s h t 0 0
+19 s h t 1 0
+20 s s t 0 0

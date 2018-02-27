@@ -1,0 +1,33 @@
+Cards Input Documentation
+- The cards.txt input file contains information on what types of cards will be read in.
+- The first line is the number of cards. Each following line is a card. 
+- An example line: "1 m d c 2 0"
+    - "1" is the card ID
+        - possible values
+            - integer values
+    - "m" is the card clan
+        - possible values
+            - m = mori
+            - s = shimazu
+            - t = tokugawa
+            - u = uesugi
+    - "d" is the card piece
+        - possible values
+            - d = daimyo
+            - h = heir
+            - s = samurai
+            - x = shrine
+    - "c" is the card type
+        - possible values
+            - c = castle
+            - s = shrine
+            - t = terrain
+    - "2" is the card value
+        - possible values
+            - 2 = +2 attack bonus
+            - 1 = +1 attack bonus
+            - 0 = +0 attack bonus
+    - "0" is the card status
+        - possible values
+            - 0 = not burned
+            - 1 = burned
