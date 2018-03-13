@@ -1,10 +1,11 @@
 Shoudo = {
-  deck = { cards=nil },
+  deck = nil,
   bg = { img=nil },
-  board = {
-    one = nil,
-    two = nil,
-    three = nil,
-    four = nil
-  }
+  board = {}
 }
+
+--[[
+deck structure:
+deck is an array of cards
+card = {id, clan, piece, type, val, status}
+]]--

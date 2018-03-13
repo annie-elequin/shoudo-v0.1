@@ -6,6 +6,6 @@ local composer = require('composer')
 -- init game
 local opt = {
   effect = "fade",
-  time = 500
+  time = 1500
 }
 composer.gotoScene("new_game", opt)

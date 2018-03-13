@@ -1,4 +1,4 @@
-GameConfig = {
+gc = {
 
   bg = 'assets/bg.jpg',
 

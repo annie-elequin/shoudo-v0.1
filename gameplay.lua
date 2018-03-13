@@ -1,4 +1,5 @@
 local composer = require( "composer" )
+require 'shoudo'
  
 local scene = composer.newScene()
  
@@ -19,6 +20,9 @@ function scene:create( event )
  
     local sceneGroup = self.view
     -- Code here runs when the scene is first created but has not yet appeared on screen
+    
+    sceneGroup:insert(Shoudo.bg.img)
+    sceneGroup:insert(init_board())
  
 end
  
@@ -63,6 +67,44 @@ function scene:destroy( event )
  
 end
  
+ -- -----------------------------------------------------------------------------------
+-- My functions!
+-- -----------------------------------------------------------------------------------
+
+function init_board()    
+  thing = display.newText("hello", gc.cx, gc.cy)
+  
+  if(Shoudo.deck) then print('the thing exists') end
+  cards = Shoudo.deck 
+  used = {}
+  num = table.maxn(cards)
+  
+  print("num "..tostring(num))
+  for i = 1, num do
+    pos = math.random(num) -- get a random card from the deck
+    
+    if table.indexOf(used, pos) then -- check if we've used this position before
+      while table.indexOf(used, pos) do pos=pos+1 end -- increment the position 
+    end -- end "if not used"
+    
+    table.insert(Shoudo.board, cards[pos]) -- insert the correct card into the board
+    table.insert(used, pos) -- insert the index into the "used" table
+  end -- end "for each card"
+  
+  print("display the board!")
+  print(tostring(table.maxn(Shoudo.board)))
+  --[[
+  for i = 0, #Shoudo.board do
+    if i%5==0 and i~=0 then print() end -- make a new line for a new row
+    
+    print(tostring(Shoudo.board[i].id).." ")
+  end
+  ]]--
+  
+  return thing
+end
+
+
  
 -- -----------------------------------------------------------------------------------
 -- Scene event function listeners
