@@ -72,38 +72,73 @@ end
 -- -----------------------------------------------------------------------------------
 
 function init_board()    
-  thing = display.newText("hello", gc.cx, gc.cy)
+  mygroup = display.newGroup()
   
-  if(Shoudo.deck) then print('the thing exists') end
+  --if(Shoudo.deck) then print('the thing exists') end
   cards = Shoudo.deck 
   used = {}
+  row = {}
   num = table.maxn(cards)
   
-  print("num "..tostring(num))
-  for i = 1, num do
-    pos = math.random(num) -- get a random card from the deck
-    
-    if table.indexOf(used, pos) then -- check if we've used this position before
-      while table.indexOf(used, pos) do pos=pos+1 end -- increment the position 
-    end -- end "if not used"
-    
-    table.insert(Shoudo.board, cards[pos]) -- insert the correct card into the board
-    table.insert(used, pos) -- insert the index into the "used" table
-  end -- end "for each card"
+  for i=1, 4 do -- for each row
+    for j=1, 5 do -- for each column
+      pos = math.random(num) -- get a random card from the deck
+      print("pos: "..tostring(pos))
+      -- TODO: seed random number with time so they're SUPER RANDOM
+      
+      -- while the card is one that we've used, draw a new card
+      while table.indexOf(used,pos) and table.maxn(used) < 20 do
+        print("get a new number")
+        pos = math.random(num)
+      end
+      Shoudo.deck[pos].row = i
+      Shoudo.deck[pos].col = j
+      table.insert(row, cards[pos]) -- insert the correct card into the board
+      table.insert(used, pos) -- insert the index into the "used" table
+    end
+    table.insert(Shoudo.board, row)
+    row = {}
+  end
   
+ 
   print("display the board!")
   print(tostring(table.maxn(Shoudo.board)))
-  --[[
-  for i = 0, #Shoudo.board do
-    if i%5==0 and i~=0 then print() end -- make a new line for a new row
-    
-    print(tostring(Shoudo.board[i].id).." ")
-  end
-  ]]--
+  print("-----")
   
-  return thing
+  locx = 8
+  locy = gc.cy/2.5
+  for i=1, #Shoudo.board do
+    for j=1, #Shoudo.board[i] do
+      print("-> "..tostring(Shoudo.board[i][j].id))
+      
+      -- print(tostring(Shoudo.board[i].id).." ") -- print the id
+      -- if i%5==0 then print("--------") end -- make a new line for a new row
+      -- t = display.newText("boop", locx, locy)
+      
+      cardID = Shoudo.board[i][j].id -- assign card id to this var
+      -- temp = display.newText(tostring(Shoudo.board[i][j].id), locx, locy)
+      img = display.newImage(mygroup, "./assets/cards/newcards/"..cardID..".png", locx, locy)
+      img.id = cardID
+      img:scale(.16,.16)
+      img:addEventListener("tap", foundcard)
+      --temp:addEventListener("tap", foundcard)
+      --mygroup:insert(temp)
+      
+      locx = locx + gc.cw/5.3
+      
+    end
+    locx = 8
+    locy = ((i-1)*70)+gc.cy/2.5
+  end
+  
+  return mygroup
+  --return display.newText("hello", gc.cx, gc.cy)
 end
 
+function foundcard(event)
+  print( "Tap event on card: " .. event.target.id )
+  return true
+end
 
  
 -- -----------------------------------------------------------------------------------
