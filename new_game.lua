@@ -170,6 +170,9 @@ function readCards(fileName)
         end -- end for token
       end -- end if line
       
+      card.img = "./assets/cards/newcards/cards-with-values/"..card.id..".png"
+      card.imgBurned = "./assets/cards/newcards/cards-with-values/"..card.id.."-burn.png"
+      
       -- add the newly created card to the "cards" table
       if(cards) then table.insert(cards, card) end 
       
